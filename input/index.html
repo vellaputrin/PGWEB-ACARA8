@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Data Kecamatan</title>
+</head>
+
+<body>
+    <h2>Form Input Data Kecamatan</h2>
+
+    <form action="input.php" onsubmit="return validateForm(event)" method="post">
+        <label for="kec">Kecamatan:</label><br>
+        <input type="text" id="kec" name="kecamatan" required><br>
+
+        <label for="long">Longitude:</label><br>
+        <input type="text" id="long" name="longitude" required><br>
+
+        <label for="lat">Latitude:</label><br>
+        <input type="text" id="lat" name="latitude" required><br>
+
+        <label for="luas">Luas:</label><br>
+        <input type="text" id="luas" name="luas" required><br>
+
+        <label for="jml_ppdk">Jumlah Penduduk:</label><br>
+        <input type="text" id="jml_ppdk" name="jumlah_penduduk" required><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <p id="informasi" style="color: red;"></p>
+
+    <script>
+        function validateForm(event) {
+            let luas = document.getElementById("luas").value.trim();
+            let text = "";
+
+            // validasi angka positif
+            if (isNaN(luas) || luas <= 0) {
+                text = "⚠️ Data luas harus berupa angka positif!";
+                document.getElementById("informasi").innerText = text;
+                event.preventDefault(); // menghentikan pengiriman form
+                return false;
+            }
+
+            // jika validasi lolos, hapus pesan error
+            document.getElementById("informasi").innerText = "";
+            return true;
+        }
+    </script>
+</body>
+</html>
